@@ -1,3 +1,16 @@
+"""
+Universidad del Valle de Guatemala
+Departamento de Ciencia de la Computación
+Curso: Algoritmos y Estructuras de Datos 
+Proyecto: Hoja de Trabajo #5
+Autores:
+- Denil José Parada Cabrera - 24761
+- Hugo Méndez - 241265
+- Andrés Ismalej - 24005
+Fecha: 27/02/2025
+Descripción:
+"""
+
 import simpy
 import random
 import statistics
