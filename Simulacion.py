@@ -8,7 +8,7 @@ Autores:
 - Hugo Méndez - 241265
 - Andrés Ismalej - 24005
 Fecha: 27/02/2025
-Descripción:
+Descripción: Programa de simulación de procesos de una CPU.
 """
 
 import simpy
@@ -17,13 +17,12 @@ import statistics
 import matplotlib.pyplot as plt
 
 # Configuración de la semilla para reproducibilidad
-RANDOM_SEED = 42
-random.seed(RANDOM_SEED)
+random.seed(42)
 
 # Parámetros globales
 RAM_CAPACITY = 100  # Capacidad inicial de la RAM
 CPU_SPEED = 3       # Instrucciones que el CPU puede procesar por unidad de tiempo
-INTERVALO_LLEGADA = 10  # Intervalo de llegada entre procesos
+INTERVALO_LLEGADA = 1  # Intervalo de llegada entre procesos
 
 # Proceso simulado
 def proceso(env, nombre, ram, cpu, tiempo_llegada, resultados):
@@ -46,7 +45,8 @@ def proceso(env, nombre, ram, cpu, tiempo_llegada, resultados):
             instrucciones -= instrucciones_a_ejecutar
 
             # Simular operaciones de I/O o volver a la cola ready
-            decision = random.randint(1, 21)
+            decision = random.randint(1, 2**1)
+
             if instrucciones > 0 and decision == 1:
                 yield env.timeout(random.uniform(0.5, 2))  # Operaciones I/O
 
@@ -61,7 +61,7 @@ def correr_simulacion(numero_procesos, ram_capacidad, cpu_speed, intervalo_llega
 
     env = simpy.Environment()
     ram = simpy.Container(env, init=ram_capacidad, capacity=ram_capacidad)
-    cpu = simpy.Resource(env, capacity=1)
+    cpu = simpy.Resource(env, capacity=1) # Se permite variar el número de CPU'S
     resultados = []
 
     for i in range(numero_procesos):
@@ -87,10 +87,16 @@ for procesos in procesos_lista:
 
 # Graficar resultados
 plt.figure(figsize=(10, 6))
-plt.errorbar(procesos_lista, promedios, yerr=desviaciones, fmt='o-', capsize=5, label="Tiempo promedio")
-plt.title("Tiempo promedio vs Número de procesos")
-plt.xlabel("Número de procesos")
-plt.ylabel("Tiempo promedio en el sistema")
+plt.errorbar(promedios, procesos_lista, yerr=desviaciones, fmt='o-', capsize=5, label="Número de procesos")
+
+# Agregar etiquetas con el promedio y la desviación estándar en cada punto
+for i in range(len(procesos_lista)):
+    plt.text(promedios[i], procesos_lista[i], f"{promedios[i]:.2f} ± {desviaciones[i]:.2f}", 
+             ha='right', va='bottom', fontsize=10, color='blue')
+
+plt.title("Número de procesos vs Tiempo promedio")
+plt.xlabel("Tiempo promedio en el sistema")
+plt.ylabel("Número de procesos")
 plt.grid(True)
 plt.legend()
 plt.show()
