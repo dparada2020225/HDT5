@@ -42,7 +42,7 @@ Simulador de procesos de una CPU
 ## Gráfico 12 (Configuración 2 CPU'S intervalo 1)
 ![Captura de Pantalla](Graficas/2CPU_1.png)
 
-## ¿Cuál es la mejor estrategia?
+## ¿Cuál es la mejor estrategia? 2 CPUs "Gráfico 10"
 Según los resultados, es más que claro que las 2 CPUs funcionan mucho mejor en simultáneo, ya que
 el rendimiento al atender a varias tareas a la vez es mucho más eficiente que si solo se aumenta 
 la velocidad de una CPU. Evitando así cualquier tipo de "cuello de botella" y no demorando tanto en
