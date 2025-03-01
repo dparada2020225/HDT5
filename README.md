@@ -40,4 +40,4 @@ Simulador de procesos de una CPU
 ![Captura de Pantalla](Graficas/2CPU_5.png)
 
 ## Gráfico 1 (Configuración 2 CPU'S intervalo 1)
-![Captura de Pantalla](Graficas/2CPU_10.png)
+![Captura de Pantalla](Graficas/2CPU_1.png)
