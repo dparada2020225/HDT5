@@ -7,4 +7,4 @@
 - Andrés Ismalej - 24005
 
 ## Gráfico 1 (Configuración normal intervalo 10)
-![Captura de Pantalla](images/screenshot.png)
+![Captura de Pantalla](Graficas/2CPU_1.png)
